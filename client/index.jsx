@@ -7,9 +7,8 @@ import App from './containers/App.jsx';
 // also add styles here when applicable
 import styles from './styles.css'
 
+
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <App />,
   document.getElementById('root')
 );
