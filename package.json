@@ -7,8 +7,6 @@
     "start": "cross-env node server/server.js",
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "cross-env NODE_ENV=development concurrently \"webpack-dev-server --open\" \"npm run start\""
-
-
   },
   "repository": {
     "type": "git",
@@ -18,16 +16,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@tailwindcss/postcss7-compat": "^2.0.3",
-    "autoprefixer": "^9.8.6",
+    "@popperjs/core": "^2.6.0",
     "body-parser": "^1.18.3",
+    "bootstrap": "^5.0.0-beta1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jquery": "^3.5.1",
     "pg": "^8.3.0",
-    "postcss": "^7.0.35",
+    "popper.js": "^1.16.1",
     "react": "^16.2.0",
     "react-dom": "^16.3.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3"
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -42,10 +41,12 @@
     "install": "^0.13.0",
     "nodemon": "^1.18.9",
     "npm": "^6.14.9",
-    "sass": "^1.30.0",
-    "sass-loader": "^10.1.0",
+    "postcss": "^7.0.35",
+    "postcss-loader": "^5.0.0",
+    "sass": "^1.32.6",
+    "sass-loader": "^10.1.1",
     "style-loader": "^2.0.0",
-    "webpack": "^4.44.2",
+    "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-node-externals": "^2.5.2"

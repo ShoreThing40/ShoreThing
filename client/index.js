@@ -1,8 +1,10 @@
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './client/containers/App.jsx';
+import App from './containers/App.jsx';
 // also add styles here when applicable
-// import styles from './styles.scss'
+import styles from './styles.css'
 
 ReactDOM.render(
   <App />,
