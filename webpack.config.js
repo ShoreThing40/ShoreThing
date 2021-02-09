@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './client/index.js',
+  entry: './client/index.jsx',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].js',
@@ -29,9 +29,41 @@ module.exports = {
       },
       {
         test: /\.s?css/,
-        exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+        },
+      },
+      
+      // {
+      //   test: /\.s?css/,
+      //   exclude: /node_modules/,
+      //   use: [{
+      //     loader: 'style-loader',
+      //   }, {
+      //     loader: 'css-loader',
+      //   },
+      //   {
+      //     loader: 'postcss-loader',
+      //     options: {
+      //       postcssOptions: {
+      //         // postcss plugins, can be exported to postcss.config.js
+      //         plugins: function () {
+      //           return [
+      //             require('autoprefixer')
+      //           ];
+      //         }
+      //       },
+      //     },
+      //   },
+      //   {
+      //     loader: 'sass-loader',
+      //   }],
+      // },
     ],
   },
 };
