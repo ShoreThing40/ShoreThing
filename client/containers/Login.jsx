@@ -1,25 +1,33 @@
 import React, {useState} from 'react';
+import {Link, useHistory} from 'react-router-dom'
 
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({username: '', password: ''})
+  const history = useHistory();
 
   const onClickHandler = () => {
-    // NOTE: .length isn't working because if no match, undefined -- so use test method with negation operator instead
-    // if (loginInfo.username.match(/[a-z0-9]/gi).length !== loginInfo.username.length || loginInfo.password.match(/[a-z0-9]/gi).length !== loginInfo.password.length){
-    if ((/[^a-z0-9]/gi).test(loginInfo.username) || (/[^a-z0-9]/gi).test(loginInfo.password)) {
-      // reject
-      alert('Invalid username or password.')
-    } else {
-      // fetch
-      fetch('/user/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8'
-        },
-        body: JSON.stringify(loginInfo),
-      })
-    }
+    // check for non-alphanumeric characters
+    // if ((/[^a-z0-9]/gi).test(loginInfo.username) || (/[^a-z0-9]/gi).test(loginInfo.password)) {
+    //   // reject
+    //   alert('Invalid username or password.')
+    // } else {
+    //   // fetch
+    //   fetch('/user/login', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json; charset=utf-8'
+    //     },
+    //     body: JSON.stringify(loginInfo),
+    //   })
+    //   .then(() => {
+    //     sessionStorage.setItem('username', loginInfo.username);
+    //     history.push('/landing')
+    //   });
+    // }
+    sessionStorage.setItem('username', loginInfo.username);
+    // sessionStorage.setItem('location', response from database)
+    history.push('/landing');
   }
 
   return (
@@ -35,7 +43,7 @@ const Login = () => {
       <input type="password" className="form-control" id="password" placeholder="Password" onChange={(e)=> setLoginInfo({...loginInfo, password: e.target.value})}/>
     </div>
     <div className="signup-link">
-      <small>Need an account? Sign up</small>
+      <Link to='/signup'><small>Need an account? Sign up</small></Link>
     </div>
     <button type="button" className="btn btn-primary" onClick={() => onClickHandler()}>Submit</button>
   </form>

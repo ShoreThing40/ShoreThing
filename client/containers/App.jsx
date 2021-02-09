@@ -6,16 +6,21 @@ import {
   Link,
 } from "react-router-dom";
 import Login from '../containers/Login.jsx';
+import Signup from '../containers/Signup.jsx';
+import Landing from '../containers/Landing.jsx';
 
 const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
           <Login/>
         </Route>
         <Route path="/signup">
-          {/* Add Signup here - but should render conditionally, on click of link - use useHistory in Login component */}
+          <Signup />
+        </Route>
+        <Route path="/landing">
+          <Landing />
         </Route>
       </Switch>
     </Router>
