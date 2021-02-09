@@ -1,0 +1,37 @@
+.signup-link {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.landing-page {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.leftdiv {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  background-color: gray;
+}
+
+.sidebar {
+  margin-left: 1em;
+}
+
+#current-user {
+  padding-top: 1em;
+  margin-left: 1em;
+  color: white;
+}
+
+.rightdiv {
+  display: flex;
+  flex-direction: column;
+}
+
+#changeZip {
+  display: flex;
+  flex-direction: row;
+}
