@@ -2,6 +2,10 @@ const { Pool } = require('pg');
 require('dotenv').config();
 const pool = new Pool({ connectionString: process.env.DB_HOST });
 
+
+// CREATE TABLE my_table (
+//    first integer not null default 0,
+//    second text);
 /*
 CREATE TABLE Users (
   userid SERIAL PRIMARY KEY,
