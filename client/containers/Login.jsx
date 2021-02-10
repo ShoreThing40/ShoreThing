@@ -35,24 +35,24 @@ const Login = () => {
     };
 
   return (
-  <div>
-  <div style={{height: '33%'}}></div>
-  <form className="container">
-    <div className="form-group">
-      <label htmlFor="username">User Name</label>
-      <input type="username" className="form-control" id="username" placeholder="Enter username" onChange={(e)=> setLoginInfo({...loginInfo, username: e.target.value})}/>
+    <div>
+    <div style={{height: '33%'}}></div>
+    <form className="container">
+      <div className="form-group">
+        <label htmlFor="username">User Name</label>
+        <input type="username" className="form-control" id="username" placeholder="Enter username" onChange={(e)=> setLoginInfo({...loginInfo, username: e.target.value})}/>
+      </div>
+      <div className="form-group">
+        <label htmlFor="password">Password</label>
+        <input type="password" className="form-control" id="password" placeholder="Password" onChange={(e)=> setLoginInfo({...loginInfo, password: e.target.value})}/>
+      </div>
+      <div className="signup-link">
+        <Link to='/signup'><small>Need an account? Sign up</small></Link>
+      </div>
+      <button type="button" className="btn btn-primary" onClick={() => onClickHandler()}>Submit</button>
+    </form>
+    <div style={{height: '33%'}}></div>
     </div>
-    <div className="form-group">
-      <label htmlFor="password">Password</label>
-      <input type="password" className="form-control" id="password" placeholder="Password" onChange={(e)=> setLoginInfo({...loginInfo, password: e.target.value})}/>
-    </div>
-    <div className="signup-link">
-      <Link to='/signup'><small>Need an account? Sign up</small></Link>
-    </div>
-    <button type="button" className="btn btn-primary" onClick={() => onClickHandler()}>Submit</button>
-  </form>
-  <div style={{height: '33%'}}></div>
-  </div>
   )
 };
 
