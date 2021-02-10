@@ -10,8 +10,8 @@ const Landing = () => {
       <Sidebar />
     </div>
     <div className='rightdiv'>
-      {/* <FavoritedParks />
-      <LocalParks /> */}
+      <FavoritedParks />
+      {/* <LocalParks /> */}
     </div>
   </div>
   )

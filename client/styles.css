@@ -17,12 +17,39 @@
 }
 
 .sidebar {
-  margin-left: 1em;
+  /* margin-left: 1em; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#sidebar-card {
+  width: 90%;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2.5vh;
+}
+
+#sidebar-card2 {
+  width: 90%;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3vh;
+}
+
+#weather-image {
+  width: 50%;
 }
 
 #current-user {
-  padding-top: 1em;
+  padding-top: .25em;
   margin-left: 1em;
+  margin-bottom: .5em;
   color: white;
 }
 
