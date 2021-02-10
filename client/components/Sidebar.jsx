@@ -22,7 +22,6 @@ const Sidebar = () => {
     fetch(`https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=${zipcode}&facet=state&facet=timezone&facet=dst`)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         const long = data.records[0].fields.longitude;
         const lat = data.records[0].fields.latitude;
       
@@ -42,7 +41,7 @@ const Sidebar = () => {
 
       }).catch(err => {throw new Error(err)});
 
-  }, [zipcode] );
+  }, [zipcode]);
 
   const onClickHandler = () => {
     const enteredZip = document.getElementById('zipcode').value;
