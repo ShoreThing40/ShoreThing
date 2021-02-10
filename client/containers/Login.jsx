@@ -7,6 +7,7 @@ const Login = () => {
   const history = useHistory();
 
   const onClickHandler = () => {
+
     // check for non-alphanumeric characters
     // if ((/[^a-z0-9]/gi).test(loginInfo.username) || (/[^a-z0-9]/gi).test(loginInfo.password)) {
     //   // reject
