@@ -10,9 +10,8 @@ module.exports = {
   devServer: {
     publicPath: '/build/',
     proxy: {
-      // CHANGE WHEN NEEDED
-      '/api': 'http://localhost:3000/',
-      '/orderlist': 'http://localhost:3000/',
+      '/auth': 'http://localhost:3000/',
+      '/trails': 'http://localhost:3000/',
     },
   },
   module: {
@@ -38,32 +37,6 @@ module.exports = {
           limit: 10000,
         },
       },
-      
-      // {
-      //   test: /\.s?css/,
-      //   exclude: /node_modules/,
-      //   use: [{
-      //     loader: 'style-loader',
-      //   }, {
-      //     loader: 'css-loader',
-      //   },
-      //   {
-      //     loader: 'postcss-loader',
-      //     options: {
-      //       postcssOptions: {
-      //         // postcss plugins, can be exported to postcss.config.js
-      //         plugins: function () {
-      //           return [
-      //             require('autoprefixer')
-      //           ];
-      //         }
-      //       },
-      //     },
-      //   },
-      //   {
-      //     loader: 'sass-loader',
-      //   }],
-      // },
     ],
   },
 };
