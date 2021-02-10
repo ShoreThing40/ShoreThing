@@ -5,7 +5,7 @@ INSERT INTO Users(username, user_pw, home_zip, photo_url) VALUES ('max&colin', '
 
 CREATE TABLE Users (
   user_id SERIAL PRIMARY KEY,
-  username VARCHAR NOT NULL,
+  username VARCHAR UNIQUE NOT NULL,
   user_pw VARCHAR,
   home_zip INT,
   photo_url VARCHAR

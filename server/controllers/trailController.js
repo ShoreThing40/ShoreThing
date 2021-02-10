@@ -2,7 +2,7 @@ const db = require('../../models/TrailModel');
 
 module.exports = {
   //define functions below
-
+  // write this out more, req.body 
   getInterests: function (req, res, next) {
     const text = `SELECT * FROM Interested`;
     db.query(text)
@@ -20,9 +20,9 @@ module.exports = {
   //add an interested trail
   postInterest: function (req, res, next) {
     const { user_id, trail_url } = req.body;
-    const text = `INSERT INTO Interested VALUES(DEFAULT, ${user_id}, '${trail_url}') RETURNING *`;
+    const text = `INSERT INTO Interested (user_id, trail_url) VALUES ($1, $2) RETURNING *`;
 
-    db.query(text)
+    db.query(text, [user_id, trail_url])
       .then(trailInts => {
         console.log('Interested trails:',trailInts);
         res.locals.trailInts = trailInts.rows;
@@ -37,15 +37,16 @@ module.exports = {
   //add a visited trail
   postVisit: function (req, res, next) {
     const { user_id, trail_url } = req.body;
-    const text = `INSERT INTO Visted VALUES(DEFAULT, ${user_id}, '${trail_url}', DEFAULT) RETURNING * WHERE user_id = ${user_id}`;
+    const text = `INSERT INTO Visited (user_id, trail_url) VALUES ($1, $2) RETURNING *`;
 
-    db.query(text)
+    db.query(text, [user_id, trail_url])
       .then(trailVisits => {
-        console.log('Visited trails:',trailVisits);
+        console.log('Visited trails:', trailVisits);
         res.locals.trailVisits = trailVisits.rows;
         return next();
       })
       .catch(err => {
+        console.log(err)
         next({ error: err });
       });
   },
