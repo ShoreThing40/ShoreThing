@@ -14,7 +14,7 @@ const Login = () => {
     //   alert('Invalid username or password.')
     // } else {
     //   // fetch
-    //   fetch('/user/login', {
+    //   fetch('/auth/check_pw', {
     //     method: 'POST',
     //     headers: {
     //       'Content-Type': 'application/json; charset=utf-8'
