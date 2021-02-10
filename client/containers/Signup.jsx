@@ -13,7 +13,7 @@ const Signup = () => {
       alert('Invalid username or password.');
     } 
     // check validity of zipcode
-    else if (/[^0-9]/.test(signupInfo.location) || signupInfo.location !== 5) alert('Invalid zipcode')
+    else if (/[^0-9]/.test(signupInfo.location) || signupInfo.location.length !== 5) alert('Invalid zipcode')
     else {
       fetch('/auth/create_pw', {
         method: 'POST',
