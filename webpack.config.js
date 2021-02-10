@@ -10,9 +10,8 @@ module.exports = {
   devServer: {
     publicPath: '/build/',
     proxy: {
-      // CHANGE WHEN NEEDED
-      '/api': 'http://localhost:3000/',
-      '/orderlist': 'http://localhost:3000/',
+      '/auth': 'http://localhost:3000/',
+      '/trails': 'http://localhost:3000/'
     },
   },
   module: {

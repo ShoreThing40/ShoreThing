@@ -14,12 +14,12 @@ CREATE TABLE Users (
 CREATE TABLE Interested (
   int_id SERIAL PRIMARY KEY,
   user_id INT NOT NULL,
-  trail_url VARCHAR NOT NULL
+  trail_id INT NOT NULL
 );
 
 CREATE TABLE Visited (
   vis_id SERIAL PRIMARY KEY,
   user_id INT NOT NULL,
-  trail_url VARCHAR NOT NULL,
+  trail_id VARCHAR NOT NULL,
   visits INT DEFAULT 1
 );

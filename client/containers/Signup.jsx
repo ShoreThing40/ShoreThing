@@ -12,10 +12,10 @@ const Signup = () => {
       // reject
       alert('Invalid username or password.');
     } 
-    // check validity of zipcode
     else if (/[^0-9]/.test(signupInfo.location) || signupInfo.location.length !== 5) alert('Invalid zipcode')
     else {
-      fetch('/auth/create_pw', {
+      // fetch
+      fetch('/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json; charset=utf-8'
