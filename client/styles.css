@@ -1,3 +1,18 @@
+.login-page {
+  background-color: sandybrown;
+}
+
+body {
+  background-color: sandybrown;
+}
+
+.login-top {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 3em;
+}
+
 .signup-link {
   display: flex;
   justify-content: flex-end;

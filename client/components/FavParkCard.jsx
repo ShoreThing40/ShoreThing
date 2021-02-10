@@ -62,6 +62,9 @@ const FavParkCard = (props) => { // props will include id from DB corresponding 
   }, []);
 
   const onClickHandler = () => {
+    // first, confirm visit
+    const visited = confirm('Another visit to this beach?');
+    if (!visited) return;    
     fetch('/trails/visited', {
       method: 'PUT',
       headers: {'Content-Type': 'application/json; charset:utf-8'},
@@ -90,7 +93,7 @@ const FavParkCard = (props) => { // props will include id from DB corresponding 
       </div>
       <div className="card-button-container">
         <button className="btn btn-primary" onClick = {() => onClickHandler()}> Visited {numVisits} times!</button>
-        <button className="btn btn-primary" onClick={() => props.favoriteBtnHandler(props.parkId)}>Favorite</button>
+        <button className="btn btn-success" onClick={() => props.favoriteBtnHandler(props.parkId)}>Favorite</button>
       </div>
     </div>   
   </div>
