@@ -11,7 +11,7 @@ module.exports = {
     publicPath: '/build/',
     proxy: {
       '/auth': 'http://localhost:3000/',
-      '/trails': 'http://localhost:3000/'
+      '/trails': 'http://localhost:3000/',
     },
   },
   module: {
@@ -37,32 +37,6 @@ module.exports = {
           limit: 10000,
         },
       },
-      
-      // {
-      //   test: /\.s?css/,
-      //   exclude: /node_modules/,
-      //   use: [{
-      //     loader: 'style-loader',
-      //   }, {
-      //     loader: 'css-loader',
-      //   },
-      //   {
-      //     loader: 'postcss-loader',
-      //     options: {
-      //       postcssOptions: {
-      //         // postcss plugins, can be exported to postcss.config.js
-      //         plugins: function () {
-      //           return [
-      //             require('autoprefixer')
-      //           ];
-      //         }
-      //       },
-      //     },
-      //   },
-      //   {
-      //     loader: 'sass-loader',
-      //   }],
-      // },
     ],
   },
 };
