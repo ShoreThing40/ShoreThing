@@ -80,3 +80,10 @@ const FavParkCard = (props) => { // props will include id from DB corresponding 
 };
 
 export default FavParkCard;
+
+GREEN: #009966
+YELLOW: #ffde33
+ORANGE: #ff9933
+RED: #cc0033
+PURPLE: #660099
+MAHOGANY: #7e0023

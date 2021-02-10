@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {Link, useHistory} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom';
+import config from '../../config.js';
 
 const Sidebar = () => {
   const [zipcode, setZipcode] = useState(sessionStorage.getItem('location'));
@@ -21,20 +22,20 @@ const Sidebar = () => {
     fetch(`https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=${zipcode}&facet=state&facet=timezone&facet=dst`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         const long = data.records[0].fields.longitude;
         const lat = data.records[0].fields.latitude;
       
-        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=5151b685452e881c36e3e1fdad7d8d73`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${config.weatherAPI}`)
           .then((res) => res.json())
           .then((weatherData) => {
-          console.log('weather', weatherData)
+          // console.log('weather', weatherData)
           setWeather({weather: weatherData.weather[0].main, temp: Math.floor((weatherData.main.temp - 273.15) * (9/5) + 32)});
 
         }).catch(err => { throw new Error(err) });
       
         // fetch to AQI api
-        fetch(`https://api.waqi.info/feed/geo:${long};${lat}/?token=05467966f386a9a8e3cea4345cbfe61494a4cad0`)
+        fetch(`https://api.waqi.info/feed/geo:${long};${lat}/?token=${config.aqiAPI}`)
           .then((res) => res.json())
           .then(({data}) => setAQI(data.aqi))
           .catch(err => {throw new Error(err)});
