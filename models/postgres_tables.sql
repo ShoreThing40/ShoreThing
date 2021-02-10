@@ -5,7 +5,7 @@ INSERT INTO Users(username, user_pw, home_zip, photo_url) VALUES ('max&colin', '
 
 CREATE TABLE Users (
   user_id SERIAL PRIMARY KEY,
-  username VARCHAR NOT NULL,
+  username VARCHAR UNIQUE NOT NULL,
   user_pw VARCHAR,
   home_zip INT,
   photo_url VARCHAR
@@ -14,12 +14,12 @@ CREATE TABLE Users (
 CREATE TABLE Interested (
   int_id SERIAL PRIMARY KEY,
   user_id INT NOT NULL,
-  trail_url VARCHAR NOT NULL
+  trail_id INT NOT NULL
 );
 
 CREATE TABLE Visited (
   vis_id SERIAL PRIMARY KEY,
   user_id INT NOT NULL,
-  trail_url VARCHAR NOT NULL,
+  trail_id VARCHAR NOT NULL,
   visits INT DEFAULT 1
 );

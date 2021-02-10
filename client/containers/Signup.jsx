@@ -12,10 +12,10 @@ const Signup = () => {
       // reject
       alert('Invalid username or password.');
     } 
-    else if (/[^0-9]/.test(signupInfo.location) || signupInfo.location !== 5) alert('Invalid zipcode')
+    else if (/[^0-9]/.test(signupInfo.location) || signupInfo.location.length !== 5) alert('Invalid zipcode')
     else {
       // fetch
-      fetch('/user/signup', {
+      fetch('/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json; charset=utf-8'
@@ -31,11 +31,13 @@ const Signup = () => {
   }
 
   return (
-  <div>
-  <div style={{height: '33%'}}></div>
+    <div className="login-page">
+    <div style={{height: '33%'}} className="login-top">
+    <h1 className="display-1" id="top-header">🏖️ Shore Thing! 🏖️</h1>
+    </div>
   <form className="container">
     <div className="form-group">
-      <label htmlFor="username">Email address</label>
+      <label htmlFor="username">Username</label>
       <input type="username" className="form-control" id="username" placeholder="Enter username" onChange={(e)=> setSignupInfo({...signupInfo, username: e.target.value})}/>
     </div>
     <div className="form-group">

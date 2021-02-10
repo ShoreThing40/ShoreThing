@@ -2,11 +2,11 @@
   "name": "HappiestTrails",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
     "start": "cross-env node server/server.js",
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "cross-env NODE_ENV=development concurrently \"webpack-dev-server --open\" \"npm run start\""
+    "dev": "cross-env NODE_ENV=development concurrently \"webpack-dev-server \" \"npm run start\""
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "@popperjs/core": "^2.6.0",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.18.3",
     "bootstrap": "^5.0.0-beta1",
     "dotenv": "^8.2.0",
