@@ -3,11 +3,10 @@ import {Link, useHistory} from 'react-router-dom';
 import config from '../../config.js';
 
 const Sidebar = (props) => {
-  // const [zipcode, setZipcode] = useState(sessionStorage.getItem('location'));
   const [weather, setWeather] = useState({});
   const [AQI, setAQI] = useState('');
   const history = useHistory();
-  // const [aqiColor, setAqiColor] = useState('')
+  const [aqiColor, setAqiColor] = useState('')
 
   const weatherMap = {
     Clouds: '../assets/cloud.svg',
@@ -15,6 +14,7 @@ const Sidebar = (props) => {
     Rain: '../assets/rain.svg',
     Drizzle: '../assets/drizzle.svg',
     Snow: '../assets/snowflake.svg',
+    Haze: '../assets/foggy.svg',
   };
   const colorMap = {
     GREEN: '#009966',
@@ -29,45 +29,38 @@ const Sidebar = (props) => {
   
 
   useEffect(() => {
-        //console.log(props.location);
         fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${props.location.latitude}&lon=${props.location.longitude}&appid=${config.weatherAPI}`)
           .then((res) => res.json())
           .then((weatherData) => {
-          // console.log('weather', weatherData)
           setWeather({weather: weatherData.weather[0].main, temp: Math.floor((weatherData.main.temp - 273.15) * (9/5) + 32)});
 
         }).catch(err => { throw new Error(err) });
       
         // fetch to AQI api
-        fetch(`https://api.waqi.info/feed/geo:${props.location.longitude};${props.location.latitude}/?token=${config.aqiAPI}`)
+        fetch(`https://api.waqi.info/feed/geo:${props.location.latitude};${props.location.longitude}/?token=${config.aqiAPI}`)
           .then((res) => res.json())
           .then(({data}) => {
-            console.log(data);
             setAQI(data.aqi)
-            // if (data.aqi >= 0 && data.aqi <= 50){
-            //   setAqiColor(colorMap.GREEN);
-            // }
-            // else if (data.aqi >= 51 && data.aqi <= 100){
-            //   setAqiColor(colorMap.YELLOW);
-            // }
-            // else if (data.aqi >= 101 && data.aqi <= 150){
-            //   setAqiColor(colorMap.ORANGE);
-            // }
-            // else if (data.aqi >= 151 && data.aqi <= 200){
-            //   setAqiColor(colorMap.RED);
-            // }
-            // else if (data.aqi >= 201 && data.aqi <= 300){
-            //   setAqiColor(colorMap.PURPLE);
-            // }
-            // else if (data.aqi >= 301 ){
-            //   setAqiColor(colorMap.MAHOGANY);
-            // }
-            // console.log(aqiColor);
+            if (data.aqi >= 0 && data.aqi <= 50){
+              setAqiColor(colorMap.GREEN);
+            }
+            else if (data.aqi >= 51 && data.aqi <= 100){
+              setAqiColor(colorMap.YELLOW);
+            }
+            else if (data.aqi >= 101 && data.aqi <= 150){
+              setAqiColor(colorMap.ORANGE);
+            }
+            else if (data.aqi >= 151 && data.aqi <= 200){
+              setAqiColor(colorMap.RED);
+            }
+            else if (data.aqi >= 201 && data.aqi <= 300){
+              setAqiColor(colorMap.PURPLE);
+            }
+            else if (data.aqi >= 301 ){
+              setAqiColor(colorMap.MAHOGANY);
+            }
           })
           .catch(err => {throw new Error(err)});
-
-      // }).catch(err => {throw new Error(err)});
-
   }, [props.location] );
 
 
@@ -86,7 +79,6 @@ const Sidebar = (props) => {
         <button type="button" className="btn btn-primary" style={{marginLeft: '1em'}} onClick={() => props.zipcodeHandler()}>Submit</button>
       </form>
     </div>
-    {/* style={{backgroundColor: aqiColor} */}
     {/* // current weather svg + text */}
     <div className='card' id="sidebar-card">
       <img src={weatherMap[weather.weather]} className="card-img-top" id="weather-image"/>
@@ -94,7 +86,7 @@ const Sidebar = (props) => {
       <h5 className='card-title'>Temp: {weather.temp}°F</h5>
     </div>
     {/* // current AQI svg + text */}
-    <div className='card' id="sidebar-card2"> 
+    <div className='card' id="sidebar-card2" style={{backgroundColor: aqiColor}}> 
       <h2 className='card-title'>AQI: {AQI}</h2>
     </div>
 
