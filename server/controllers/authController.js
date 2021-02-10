@@ -20,9 +20,9 @@ module.exports = {
   checkPassword: function (req, res, next) {
     // console.log('getting username')
     const { password, username, location } = req.body;
-    const text = `SELECT * FROM Users WHERE username='${username}'`;
+    const text = `SELECT * FROM Users WHERE (username=$1)`;
     let data;
-      db.query(text)
+      db.query(text, [username])
         .then(user => {
           // console.log('comparing passwords')
           data = user;
@@ -37,8 +37,8 @@ module.exports = {
 
   storeUserInfo: function (req, res, next) {
     const { username, hash } = req.body;
-    const text = `INSERT INTO Users VALUES (DEFAULT, '${username}', '${hash}')`;
-    db.query(text)
+    const text = `INSERT INTO Users (username, user_pw) VALUES ($1, $2)`;
+    db.query(text, [username, hash ])
     .then(() => next())
     .catch(err => next({ error: err }));
   }
