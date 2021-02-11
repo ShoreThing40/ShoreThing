@@ -32,7 +32,7 @@ const Landing = () => {
     </div>
     <div className='rightdiv'>
       <FavoritedParks />
-      {/* <LocalParks location={location} /> */}
+      <LocalParks location={location}/>
     </div>
   </div>
   )
