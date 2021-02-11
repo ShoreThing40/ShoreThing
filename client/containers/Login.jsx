@@ -36,7 +36,7 @@ const Login = () => {
     };
     /// Google Auth Handler
     const responseGoogle = (response) => {
-      console.log(response);
+      sessionStorage.setItem('username', response.profileObj.givenName)
       history.push('/landing');
     }
 
