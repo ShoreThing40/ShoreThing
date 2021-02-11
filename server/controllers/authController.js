@@ -15,7 +15,6 @@ module.exports = {
   },
 
   checkPassword: function (req, res, next) {
-    // console.log('getting username')
     const { username, password } = req.body;
     const text = `SELECT * FROM Users WHERE (username=$1)`;
     let data;
@@ -24,8 +23,9 @@ module.exports = {
           data = user;
           bcrypt.compare(password, data.rows[0].user_pw, function(err, user) {
             if (err) return next(err);
-              res.locals.result = { bool: user, location: data.rows[0].home_zip };
-              return next();
+            console.log(username);
+            res.locals.result = { bool: user, location: data.rows[0].home_zip, user_id: data.rows[0].user_id };
+            return next();
           });
         })
         .catch(err => next({ error: err }))

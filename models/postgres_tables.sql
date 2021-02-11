@@ -1,13 +1,9 @@
 
-INSERT INTO Users(username, user_pw, home_zip, photo_url) VALUES ('max&colin', 'pass123', 10304, 'someUrl');
--- INSERT INTO public.users (first_name, last_name, user_name, user_password, user_email, user_location) VALUES ('Ali', 'Rahman', 'arahman', 'password', 'arahman@gmail.com', 'California');
-
-
 CREATE TABLE Users (
   user_id SERIAL PRIMARY KEY,
   username VARCHAR UNIQUE NOT NULL,
-  user_pw VARCHAR,
-  home_zip INT,
+  user_pw VARCHAR NOT NULL,
+  home_zip INT NOT NULL,
   photo_url VARCHAR
 );
 
@@ -21,5 +17,5 @@ CREATE TABLE Visited (
   vis_id SERIAL PRIMARY KEY,
   user_id INT NOT NULL,
   trail_id VARCHAR NOT NULL,
-  visits INT DEFAULT 1
+  visits INT DEFAULT 0
 );
