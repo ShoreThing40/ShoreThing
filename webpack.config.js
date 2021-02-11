@@ -10,12 +10,16 @@ module.exports = {
   devServer: {
     publicPath: '/build/',
     proxy: {
-      '/auth': 'http://localhost:3000/',
       '/trails': 'http://localhost:3000/',
+      '/auth': 'http://localhost:3000/',
     },
   },
   module: {
     rules: [
+      {
+        test: /\.json$/,
+        loader: 'json-loader',
+      },
       {
         test: /\.jsx?/,
         exclude: /node_modules/,

@@ -21,14 +21,16 @@ body {
 .landing-page {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: fit-content;
 }
 
 .leftdiv {
   display: flex;
   flex-direction: column;
   width: 25%;
+  min-width: 25%;
   background-color: gray;
+  height: 100vh;
 }
 
 .sidebar {
@@ -73,9 +75,87 @@ body {
 .rightdiv {
   display: flex;
   flex-direction: column;
+  width: 75vw;
 }
+
+.card-set {
+  display: flex;
+  margin-left: 1vw;
+  margin-top: 1vw;
+}
+
+.card-holder-label {
+  writing-mode: vertical-rl;
+  text-align: center;
+}
+
+.cardHolder {
+  display: flex;
+  justify-content: space-between;
+  width: 67vw;
+  /* margin-left: 1vw; */
+  /* margin-right: 1vw; */
+  margin-top: 1vh;
+  background-color: teal;
+  padding: 0vw 1vw;
+}
+
+.scroll-div {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+#beachCard {
+  margin: 1em 1em;
+  /* width: 18rem; */
+}
+
+#card-top-image {
+  margin-left: 2.5rem;
+  padding-top: 10px;
+}
+
+#card-top-image-placeholder {
+  margin-left: 4rem;
+}
+
+.info-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aqi-info {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  margin-right: 2.3em;
+}
+
+/* .card-button-container {
+  display: flex;
+  justify-self: last baseline;
+} */
 
 #changeZip {
   display: flex;
   flex-direction: row;
 }
+
+.card:hover {
+  /* background-color: green; */
+  box-shadow: 1px 1px 5px black;
+}
+
+/* set color based on aqi - handle inline */

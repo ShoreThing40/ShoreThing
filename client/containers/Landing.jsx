@@ -9,13 +9,15 @@ const Landing = () => {
 
   useEffect(() => {
     fetch(`https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=${zipcode}&facet=state&facet=timezone&facet=dst`)
-        .then((res) => res.json())
-        .then((data) => {
-          const long = data.records[0].fields.longitude;
-          const lat = data.records[0].fields.latitude;
-          setLocation({longitude: long, latitude: lat});
-  })
-}, [zipcode])
+      .then((res) => res.json())
+      .then((data) => {
+        const long = data.records[0].fields.longitude;
+        const lat = data.records[0].fields.latitude;
+        console.log('zip, lat and long from opendatasoft', zipcode, lat, long)
+        setLocation({longitude: long, latitude: lat});
+      })
+      .catch(err => {throw new Error(err)})
+  }, [zipcode])
 
   const zipcodeHandler = () => {
     const enteredZip = document.getElementById('zipcode').value;
@@ -30,7 +32,7 @@ const Landing = () => {
     </div>
     <div className='rightdiv'>
       <FavoritedParks />
-      {/* <LocalParks location={location}/> */}
+      <LocalParks location={location}/>
     </div>
   </div>
   )
