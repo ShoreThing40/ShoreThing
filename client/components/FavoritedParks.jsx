@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import FavParkCard from './FavParkCard.jsx';
+// import FavParkCard from './FavParkCard.jsx';
+// import DummyCard from './DummyCard.jsx';
 
 const FavoritedParks = () => {
   const [favBeaches, setFavBeaches] = useState([]);
@@ -25,11 +26,19 @@ const FavoritedParks = () => {
   
   const cardHolder = [];
   for (let i = 0; i < favBeaches.length; i++){
+    // for (let i = 0; i < 5; i++){
+    // cardHolder.push(<DummyCard key={i} />)
     cardHolder.push(<FavParkCard parkId={favBeaches.ID} favoriteBtnHandler={favoriteBtnHandler}/>)
   }
+  if (!cardHolder.length) return null;
   return (
-  <div>
-    {cardHolder}
+    <div className="card-set">
+    <h2 className="card-holder-label">Favorites</h2>
+    <div className="cardHolder">
+      <div className="scroll-div">
+      {cardHolder}
+      </div>
+    </div>
   </div>
   )
 };
