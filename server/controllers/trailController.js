@@ -19,10 +19,10 @@ module.exports = {
 
   //add an interested trail
   postInterest: function (req, res, next) {
-    const { user_id, trail_url } = req.body;
+    const { username, parkId } = req.body;
     const text = `INSERT INTO Interested (user_id, trail_url) VALUES ($1, $2) RETURNING *`;
 
-    db.query(text, [user_id, trail_url])
+    db.query(text, [username, parkId])
       .then(trailInts => {
         console.log('Interested trails:',trailInts);
         res.locals.trailInts = trailInts.rows;

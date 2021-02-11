@@ -23,9 +23,13 @@ module.exports = {
         .then(user => {
           data = user;
           bcrypt.compare(password, data.rows[0].user_pw, function(err, user) {
-            if (err) return next(err);
-              res.locals.result = { bool: user, location: data.rows[0].home_zip };
-              return next();
+            if (err) {
+              console.log('show me the error', err);
+              return next(err);
+            }
+            console.log(username)
+            res.locals.result = { bool: user, location: data.rows[0].home_zip , user_id: data.rows[0].user_id };
+            return next();
           });
         })
         .catch(err => next({ error: err }))
