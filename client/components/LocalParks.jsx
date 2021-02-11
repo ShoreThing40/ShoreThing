@@ -32,7 +32,7 @@ const LocalParks = (props) => {
     fetch('/trails/interested', {
       method: 'POST',
       headers: {'Content-Type': 'application/json; charset=UTF-8'},
-      body: JSON.stringify({username: sessionStorage.getItem('username'), parkId: id})
+      body: JSON.stringify({user_id: sessionStorage.getItem('user_id'), trail_id: id})
     })
       .then(() => {
         // fetch table to reset state to rerender here
