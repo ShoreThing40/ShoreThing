@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
+import config from '../../config'
+
+
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({username: '', password: ''})
@@ -58,7 +61,7 @@ const Login = () => {
           <Link to='/signup'><small>Need an account? Sign up</small></Link>
         </div>	
         <GoogleLogin 
-          clientId='570245061769-7eq26o7sqvqfefq1fk2oat8ohuob7oqk.apps.googleusercontent.com'
+          clientId={config.googleAPI}
           buttonText="Login"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
