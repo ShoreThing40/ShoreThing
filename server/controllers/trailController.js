@@ -2,7 +2,6 @@ const db = require('../../models/TrailModel');
 
 module.exports = {
   //define functions below
-  // write this out more, req.body 
   getInterests: function (req, res, next) {
     // const postManId = sessionStorage.getItem('user_id') ? || 1;
     const { user_id } = req.params;
@@ -22,10 +21,10 @@ module.exports = {
 
   //add an interested trail
   postInterest: function (req, res, next) {
-    const { user_id, parkId } = req.body;
+    const { user_id, trail_id } = req.body;
     const text = `INSERT INTO Interested (user_id, trail_id) VALUES ($1, $2) RETURNING *`;
     console.log(user_id)
-    db.query(text, [user_id, parkId])
+    db.query(text, [user_id, trail_id])
       .then(trailInts => {
         console.log('Interested trails:',trailInts);
         res.locals.trailInts = trailInts.rows;
@@ -54,10 +53,10 @@ module.exports = {
 
   //add a visited trail
   postVisit: function (req, res, next) {
-    const { user_id, trail_url } = req.body;
-    const text = `INSERT INTO Visited (user_id, trail_url) VALUES ($1, $2) RETURNING *`;
+    const { user_id, trail_id } = req.body;
+    const text = `INSERT INTO Visited (user_id, trail_id) VALUES ($1, $2) RETURNING *`;
 
-    db.query(text, [user_id, trail_url])
+    db.query(text, [user_id, trail_id])
       .then(trailVisits => {
         console.log('Visited trails:', trailVisits);
         res.locals.trailVisits = trailVisits.rows;
@@ -72,7 +71,7 @@ module.exports = {
   //increment number of times visited
   updateVisit: function (req, res, next) {
     const { user_id, trail_id, visits } = req.params;
-    console.log('userid, parkid, visits', user_id, trail_id, visits)
+    console.log('userid, trail_id, visits', user_id, trail_id, visits);
     const text = `UPDATE Visited SET visits = $3
     WHERE user_id = $1 AND trail_id = $2`;
 
@@ -84,6 +83,40 @@ module.exports = {
       .catch(err => {
         next({ error: err })
       });
+  },
+
+  //remove related entries from tables Interested and Visited
+  deleteInterest: function (req, res, next) {
+    const { user_id, trail_id } = req.params;
+    console.log('delete interest', user_id, trail_id);
+    const text = `DELETE FROM Interested
+    WHERE user_id = $1 AND trail_id = $2`;
+
+    db.query(text, [user_id, trail_id])
+      .then(() => {
+        console.log('Updated Interested Table');
+        return next();
+      })
+      .catch(err => {
+        next({ error: err })
+      });
+  },
+
+  deleteVisit: function (req, res, next) {
+    const { user_id, trail_id } = req.params;
+    console.log('delete visit', user_id, trail_id);
+    const text = `DELETE FROM Visited
+    WHERE user_id = $1 AND trail_id = $2`;
+
+    db.query(text, [user_id, trail_id])
+      .then(() => {
+        console.log('Updated Visited Table');
+        return next();
+      })
+      .catch(err => {
+        next({ error: err })
+      });
+
   },
   
 };
