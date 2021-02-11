@@ -31,11 +31,13 @@ const Signup = () => {
   }
 
   return (
-  <div>
-  <div style={{height: '33%'}}></div>
+    <div className="login-page">
+    <div style={{height: '33%'}} className="login-top">
+    <h1 className="display-1" id="top-header">🏖️ Shore Thing! 🏖️</h1>
+    </div>
   <form className="container">
     <div className="form-group">
-      <label htmlFor="username">Email address</label>
+      <label htmlFor="username">Username</label>
       <input type="username" className="form-control" id="username" placeholder="Enter username" onChange={(e)=> setSignupInfo({...signupInfo, username: e.target.value})}/>
     </div>
     <div className="form-group">
