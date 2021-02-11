@@ -7,7 +7,6 @@ const LocalParks = (props) => {
   const [localBeaches, setLocalBeaches] = useState([]);
 
   useEffect(() => {
-    console.log('here');
     // if beaches have not been fetched, get them and save in localStorage
     if (!localStorage.getItem('beaches')) {
     fetch(`https://api.coastal.ca.gov/access/v1/locations`)
@@ -18,7 +17,7 @@ const LocalParks = (props) => {
       .catch((err) => { throw new Error(err) });
     }
     setTimeout(() => {
-      console.log('stored', JSON.parse(localStorage.getItem('beaches')));
+      // console.log('stored', JSON.parse(localStorage.getItem('beaches')));
       // filter beaches in localStorage to get those near user
       const nearbyBeaches = JSON.parse(localStorage.getItem('beaches')).filter((beach) => {
         return (Math.abs(beach.LONGITUDE - props.location.longitude) < .2

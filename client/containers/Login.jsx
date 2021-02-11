@@ -21,11 +21,11 @@ const Login = () => {
       })
         .then(res => res.json())
         .then((result) => {
-          console.log(result)
           if (result.bool) {
             sessionStorage.setItem('username', loginInfo.username);
             sessionStorage.setItem('location', result.location);
-            history.push('/landing')
+            sessionStorage.setItem('user_id', result.user_id);
+            history.push('/landing');
           } else {
             alert('Validation unsuccessful');
           }
@@ -35,26 +35,25 @@ const Login = () => {
     };
 
   return (
-  <div className="login-page">
-  <div style={{height: '33%'}} className="login-top">
-  <h1 className="display-1" id="top-header">🏖️ Shore Thing! 🏖️</h1>
-  </div>
-  <form className="container">
-    <div className="form-group">
-      <label htmlFor="username">Username</label>
-      <input type="username" className="form-control" id="username" placeholder="Enter username" onChange={(e)=> setLoginInfo({...loginInfo, username: e.target.value})}/>
+    <div className="login-page">
+      <div style={{height: '33%'}} className="login-top">
+        <h1 className="display-1" id="top-header">🏖️ Shore Thing! 🏖️</h1>
+      </div>
+      <form className="container">
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
+          <input type="username" className="form-control" id="username" placeholder="Enter username" onChange={(e)=> setLoginInfo({...loginInfo, username: e.target.value})}/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input type="password" className="form-control" id="password" placeholder="Password" onChange={(e)=> setLoginInfo({...loginInfo, password: e.target.value})}/>
+        </div>
+        <div className="signup-link">
+          <Link to='/signup'><small>Need an account? Sign up</small></Link>
+        </div>	
+        <button type="button" className="btn btn-primary" onClick={() => onClickHandler()}>Submit</button>
+      </form>
     </div>
-    <div className="form-group">
-      <label htmlFor="password">Password</label>
-      <input type="password" className="form-control" id="password" placeholder="Password" onChange={(e)=> setLoginInfo({...loginInfo, password: e.target.value})}/>
-    </div>
-    <div className="signup-link">
-      <Link to='/signup'><small>Need an account? Sign up</small></Link>
-    </div>
-    <button type="button" className="btn btn-primary" onClick={() => onClickHandler()}>Submit</button>
-  </form>
-  <div style={{height: '33%'}}></div>
-  </div>
   )
 };
 

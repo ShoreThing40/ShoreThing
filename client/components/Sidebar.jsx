@@ -26,41 +26,40 @@ const Sidebar = (props) => {
   }
 
 
-  
-
   useEffect(() => {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${props.location.latitude}&lon=${props.location.longitude}&appid=${config.weatherAPI}`)
-          .then((res) => res.json())
-          .then((weatherData) => {
-          setWeather({weather: weatherData.weather[0].main, temp: Math.floor((weatherData.main.temp - 273.15) * (9/5) + 32)});
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${props.location.latitude}&lon=${props.location.longitude}&appid=${config.weatherAPI}`)
+      .then((res) => res.json())
+      .then((weatherData) => {
+        console.log('weather data for lat/long', props.location.latitude, props.location.longitude, weatherData)
+      setWeather({weather: weatherData.weather[0].main, temp: Math.floor((weatherData.main.temp - 273.15) * (9/5) + 32)});
 
-        }).catch(err => { throw new Error(err) });
-      
-        // fetch to AQI api
-        fetch(`https://api.waqi.info/feed/geo:${props.location.latitude};${props.location.longitude}/?token=${config.aqiAPI}`)
-          .then((res) => res.json())
-          .then(({data}) => {
-            setAQI(data.aqi)
-            if (data.aqi >= 0 && data.aqi <= 50){
-              setAqiColor(colorMap.GREEN);
-            }
-            else if (data.aqi >= 51 && data.aqi <= 100){
-              setAqiColor(colorMap.YELLOW);
-            }
-            else if (data.aqi >= 101 && data.aqi <= 150){
-              setAqiColor(colorMap.ORANGE);
-            }
-            else if (data.aqi >= 151 && data.aqi <= 200){
-              setAqiColor(colorMap.RED);
-            }
-            else if (data.aqi >= 201 && data.aqi <= 300){
-              setAqiColor(colorMap.PURPLE);
-            }
-            else if (data.aqi >= 301 ){
-              setAqiColor(colorMap.MAHOGANY);
-            }
-          })
-          .catch(err => {throw new Error(err)});
+    }).catch(err => { throw new Error(err) });
+  
+    // fetch to AQI api
+    fetch(`https://api.waqi.info/feed/geo:${props.location.latitude};${props.location.longitude}/?token=${config.aqiAPI}`)
+      .then((res) => res.json())
+      .then(({data}) => {
+        setAQI(data.aqi)
+        if (data.aqi >= 0 && data.aqi <= 50){
+          setAqiColor(colorMap.GREEN);
+        }
+        else if (data.aqi >= 51 && data.aqi <= 100){
+          setAqiColor(colorMap.YELLOW);
+        }
+        else if (data.aqi >= 101 && data.aqi <= 150){
+          setAqiColor(colorMap.ORANGE);
+        }
+        else if (data.aqi >= 151 && data.aqi <= 200){
+          setAqiColor(colorMap.RED);
+        }
+        else if (data.aqi >= 201 && data.aqi <= 300){
+          setAqiColor(colorMap.PURPLE);
+        }
+        else if (data.aqi >= 301 ){
+          setAqiColor(colorMap.MAHOGANY);
+        }
+      })
+      .catch(err => {throw new Error(err)});
   }, [props.location] );
 
 

@@ -18,7 +18,7 @@ const FavParkCard = (props) => { // props will include id from DB corresponding 
   const [imgUrl, setImgUrl] = useState('');
   const [weather, setWeather] = useState({});
   const [AQI, setAQI] = useState('');  
-  const [numVisits, setNumVisits] = ('');
+  const [numVisits, setNumVisits] = useState('');
   
   const weatherMap = {
     Clouds: '../assets/cloud.svg',
@@ -32,9 +32,10 @@ const FavParkCard = (props) => { // props will include id from DB corresponding 
   // , temperature: Math.floor((main.temp + 273.15) * (9/5) + 32)
   useEffect(() => {
     // fetch number of visits
-    fetch(`/trails/visited/:${sessionStorage.getItem('username')}`)
+    //we actually want to fetch with the id of the specific visit row, which is vis_id, not user_id
+    fetch(`/trails/visited/${sessionStorage.getItem('user_id')}/${props.parkId}`)
     .then((data) => data.json())
-    .then((result) => setNumVisits(result))
+    .then((result) => setNumVisits(result[0].visits))
     .catch((err) => {throw new Error(err)});
 
     // fetch to beach api
@@ -62,23 +63,23 @@ const FavParkCard = (props) => { // props will include id from DB corresponding 
       .then((res) => res.json())
       .then(({data}) => setAQI(data.aqi))
       .catch(err => {throw new Error(err)});
-      })
-
   }, []);
 
   const onClickHandler = () => {
     // first, confirm visit
     const visited = confirm('Another visit to this beach?');
-    if (!visited) return;    
-    fetch('/trails/visited', {
+    if (!visited) return;
+    //one more step of logic to determine if beach has 0 visits
+    //if so, post, if 1 or more, put  
+    console.log('userid, parkid, visits', sessionStorage.getItem('user_id'), props.parkId, numVisits);
+    fetch(`/trails/visited/${sessionStorage.getItem('user_id')}/${props.parkId}/${numVisits + 1}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json; charset:utf-8'},
-      body: JSON.stringify({visits: numVisits + 1, park_id: props.parkId, username: sessionStorage.getItem('username')}),
+      // body: JSON.stringify({visits: numVisits + 1, park_id: props.parkId, user_id: sessionStorage.getItem('user_id')}),
     })
     .then(() => setNumVisits(numVisits + 1))
     .catch(err => {throw new Error(err)});
   }
-
 
 
   return (
@@ -100,12 +101,12 @@ const FavParkCard = (props) => { // props will include id from DB corresponding 
       <div className ="aqi-info">
         <p className='card-text'>AQI: {AQI}</p>
       </div>
-      </div>
-      <div className="card-button-container">
-        <button className="btn btn-primary" onClick = {() => onClickHandler()}> Visited {numVisits || 0} times!</button>
+      <div className="card-button-container" key={'btnbtnprim'}>
+        <button className="btn btn-primary" onClick = {() => onClickHandler()}> Visited {numVisits} times!</button>
         <button className="btn btn-success" onClick={() => props.favoriteBtnHandler(props.parkId)}>Favorite</button>
       </div>
     </div>   
+  </div>
   </div>
   )
 };
