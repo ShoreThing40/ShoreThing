@@ -12,8 +12,12 @@ router.post('/interested', trailController.postInterest, (req, res) => {
   res.status(200).json(res.locals.trailInts);
 });
 
+//router delete /interested
+
 router.post('/visited', trailController.postVisit, (req, res) => {
   res.status(200).json(res.locals.trailVisits);
 });
+
+//router put /visited
 
 module.exports = router;

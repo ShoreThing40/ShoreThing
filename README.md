@@ -1,3 +1,2 @@
-# HappiestTrails
+# ShoreThing
 
-## Trailshine
