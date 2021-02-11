@@ -50,7 +50,11 @@ const FavoritedParks = () => {
   for (let i = 0; i < favBeaches.length; i++) {
     cardHolder.push(<FavParkCard key={favBeaches[i].trail_id} parkId={favBeaches[i].trail_id} favoriteBtnHandler={favoriteBtnHandler} />)
   }
-  if (!cardHolder.length) return null;
+  if (!cardHolder.length) return (
+    <div style={{ paddingLeft: '1rem', marginTop: '1rem' }}>
+      <button type="button" className="btn btn-info" onClick={() => refreshHandler()}>Refresh</button>
+    </div>
+  );
   return (
     <div className="card-set">
       <div >
