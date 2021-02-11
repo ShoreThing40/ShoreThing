@@ -4,7 +4,8 @@ module.exports = {
   //define functions below
   // write this out more, req.body 
   getInterests: function (req, res, next) {
-    const text = `SELECT * FROM Interested`;
+    // const postManId = sessionStorage.getItem('user_id') ? || 1;
+    const text = `SELECT * FROM Interested WHERE (user_id=1)`;
     db.query(text)
       .then(trailInts => {
         console.log('ALL interested trails');
@@ -19,17 +20,17 @@ module.exports = {
 
   //add an interested trail
   postInterest: function (req, res, next) {
-    const { username, parkId } = req.body;
-    const text = `INSERT INTO Interested (user_id, trail_url) VALUES ($1, $2) RETURNING *`;
-
-    db.query(text, [username, parkId])
+    const { user_id, parkId } = req.body;
+    const text = `INSERT INTO Interested (user_id, trail_id) VALUES ($1, $2) RETURNING *`;
+    console.log(user_id)
+    db.query(text, [user_id, parkId])
       .then(trailInts => {
         console.log('Interested trails:',trailInts);
         res.locals.trailInts = trailInts.rows;
         return next();
       })
       .catch(err => {
-        console.error(err);
+        console.log(err);
         next({ error: 'post interest ' + err });
       });
   },
