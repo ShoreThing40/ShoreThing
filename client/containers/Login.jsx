@@ -21,7 +21,6 @@ const Login = () => {
       })
         .then(res => res.json())
         .then((result) => {
-          console.log(result);
           if (result.bool) {
             sessionStorage.setItem('username', loginInfo.username);
             sessionStorage.setItem('location', result.location);

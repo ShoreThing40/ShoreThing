@@ -19,7 +19,7 @@ const LocalParkCard = (props) => { // props will include id from DB correspondin
   // , temperature: Math.floor((main.temp + 273.15) * (9/5) + 32)
   useEffect(() => {
     // fetch number of visits
-    fetch(`/trails/visited/:${sessionStorage.getItem('username')}`)
+    fetch(`/trails/visited/:${sessionStorage.getItem('user_id')}`)
       .then((data) => data.json())
       .then((result) => setNumVisits(result))
       .catch((err) => {throw new Error(err)});
